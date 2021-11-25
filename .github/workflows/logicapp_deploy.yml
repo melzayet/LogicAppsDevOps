@@ -4,8 +4,8 @@
 name: (classic) Build and Deploy Logic App. 
 
 env:
-  LA_NAME: 'la-name-324234'
-  LA_NAME_prod: 'prod-la-name-324234'
+  LA_NAME: 'ais-demo-dev'
+  LA_NAME_prod: 'ais-demo-prod'
 
 on:
   workflow_dispatch:
