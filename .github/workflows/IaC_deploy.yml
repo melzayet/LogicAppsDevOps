@@ -53,12 +53,7 @@ jobs:
         parameters: ARM/connectors-parameters.json logicAppSystemAssignedIdentityTenantId=${{ steps.ladeploy.outputs.logicAppSystemAssignedIdentityTenantId }} logicAppSystemAssignedIdentityObjectId=${{ steps.ladeploy.outputs.logicAppSystemAssignedIdentityObjectId }}
         deploymentMode: Incremental
 
-    - name: Update Logic App Connections 
-      uses: azure/CLI@v1
-      with:
-        azcliversion: 2.0.72
-        inlineScript: |
-          az account set -s ${{ secrets.AZURE_SUB }}
+    - run: |
           az functionapp config appsettings set --name ${{ steps.ladeploy.outputs.LAname }} --resource-group  ${{ secrets.RG_LA }} --settings "BLOB_CONNECTION_RUNTIMEURL=${{ steps.msdemoconn.outputs.blobendpointurl }}"
           az functionapp config appsettings set --name ${{ steps.ladeploy.outputs.LAname }} --resource-group  ${{ secrets.RG_LA }} --settings "WORKFLOWS_RESOURCE_GROUP_NAME=${{ secrets.RG_CON }}"
 
@@ -111,12 +106,7 @@ jobs:
         parameters: ARM/connectors-parameters.prod.json logicAppSystemAssignedIdentityTenantId=${{ steps.ladeploy2.outputs.logicAppSystemAssignedIdentityTenantId }} logicAppSystemAssignedIdentityObjectId=${{ steps.ladeploy2.outputs.logicAppSystemAssignedIdentityObjectId }}
         deploymentMode: Incremental
 
-    - name: Update Logic App Connections 
-      uses: azure/CLI@v1
-      with:
-        azcliversion: 2.0.72
-        inlineScript: |
-          az account set -s ${{ secrets.AZURE_SUB }}
+    - run: |
           az functionapp config appsettings set --name ${{ steps.ladeploy2.outputs.LAname }} --resource-group  ${{ secrets.RG_LA }} --settings "BLOB_CONNECTION_RUNTIMEURL=${{ steps.msdemoconn2.outputs.blobendpointurl }}"
           az functionapp config appsettings set --name ${{ steps.ladeploy2.outputs.LAname }} --resource-group  ${{ secrets.RG_LA }} --settings "WORKFLOWS_RESOURCE_GROUP_NAME=${{ secrets.RG_CON }}"
 
