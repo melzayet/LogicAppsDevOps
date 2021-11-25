@@ -12,13 +12,13 @@
             "value": "ais-demo-project"
         },
         "logicAppName": {
-            "value": "ais-demo"
+            "value": "ais-demo-dev"
         },
         "appServicePlanName": {
-            "value": "asp-ais-demo-maelzaye"
+            "value": "asp-ais-demo-251121"
         },
         "storageName": {
-            "value": "sa-ais-demo-maelzaye"
+            "value": "saaisdemo251121"
         },
         "kind": {
             "value": "StorageV2"
