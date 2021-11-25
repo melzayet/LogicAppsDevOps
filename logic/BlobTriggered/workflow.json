@@ -13,7 +13,7 @@
                 "type": "ServiceProvider",
                 "inputs": {
                     "parameters": {
-                        "path": "https://blobs/newchange/{name}"
+                        "path": "blobs/newchange/{name}"
                     },
                     "serviceProviderConfiguration": {
                         "connectionName": "AzureBlob",
