@@ -12,7 +12,7 @@
             "value": "ais-demo-project"
         },
         "logicAppName": {
-            "value": "ais-demo-dev"
+            "value": "ais-demo-prod"
         },
         "appServicePlanName": {
             "value": "prod-sa-ais-demo-251121"
