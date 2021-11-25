@@ -18,7 +18,7 @@
             "value": "prod-sa-ais-demo-251121"
         },
         "storageName": {
-            "value": "saaisdemo251121"
+            "value": "prodsaaisdemo251121"
         },
         "kind": {
             "value": "StorageV2"
