@@ -3,22 +3,22 @@
     "contentVersion": "1.0.0.0",
     "parameters": { 
         "location": {
-            "value": "australiasoutheast"
+            "value": "uksouth"
         },
         "environmentName": {
-            "value": "env-name"
+            "value": "prod"
         },
         "projectName": {
-            "value": "project-name"
+            "value": "ais-demo-project"
         },
         "logicAppName": {
-            "value": "prod-la-name-324234"
+            "value": "ais-demo-dev"
         },
         "appServicePlanName": {
-            "value": "prod-asp-name-2432423"
+            "value": "prod-sa-ais-demo-251121"
         },
         "storageName": {
-            "value": "prodsa2343243423"
+            "value": "sa-ais-demo-251121"
         },
         "kind": {
             "value": "StorageV2"

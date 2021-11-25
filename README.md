@@ -38,7 +38,7 @@ To run the project locally, you can follow the [documentation](https://docs.micr
   {
     "IsEncrypted": false,
     "Values": {
-      "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+      "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=aisdemomaelzaye;AccountKey=cvs1f0/sGJPnZJqioz3N2FIr1wY6ajtcsT33nCCDH8p2zQBujL8QTBk8hguShSp8jEoApXDB9rS0hU5N9kjzuQ==;EndpointSuffix=core.windows.net",
       "FUNCTIONS_WORKER_RUNTIME": "node", 
       "azureblob-connectionKey": "", 
       "BLOB_CONNECTION_RUNTIMEURL": ""
