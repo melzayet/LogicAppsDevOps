@@ -1,0 +1,41 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Transform_XML": {
+                "type": "Xslt",
+                "inputs": {
+                    "content": "@outputs('Flat_File_Decoding')?['body']",
+                    "map": {
+                        "name": "pomap.xslt"
+                    }
+                },
+                "runAfter": {
+                    "Flat_File_Decoding": [
+                        "Succeeded"
+                    ]
+                }
+            },
+            "Flat_File_Decoding": {
+                "type": "FlatFileDecoding",
+                "inputs": {
+                    "content": "@triggerBody()",
+                    "schema": {
+                        "name": "Schema1.xsd"
+                    }
+                },
+                "runAfter": {}
+            }
+        },
+        "triggers": {
+            "manual": {
+                "type": "Request",
+                "kind": "Http",
+                "inputs": {}
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {}
+    },
+    "kind": "Stateful"
+}
