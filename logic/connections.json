@@ -12,12 +12,12 @@
     },
     "servicebus_1": {
       "api": {
-        "id": "/subscriptions/f5868587-4ac8-4a33-aaff-3299dfe021f4/resourceGroups/ais-demos/providers/Microsoft.Web/connections/servicebus-2"        
+        "id": "/subscriptions/f5868587-4ac8-4a33-aaff-3299dfe021f4/providers/Microsoft.Web/locations/uksouth/managedApis/servicebus"
       },
       "connection": {
-        "id": "/subscriptions/f5868587-4ac8-4a33-aaff-3299dfe021f4/resourceGroups/ais-demos/providers/Microsoft.Web/connections/servicebus-2"
+        "id": "/subscriptions/f5868587-4ac8-4a33-aaff-3299dfe021f4/resourceGroups/AIS-DEMOS-CONNECTIONS/providers/Microsoft.Web/connections/servicebus"
       },
-      "connectionRuntimeUrl": "https://70c0e3bcb44fa056.05.common.logic-uksouth.azure-apihub.net/apim/servicebus/e37f57d975eb4a3b890bcf8bc51558c5",
+      "connectionRuntimeUrl": "https://70c0e3bcb44fa056.05.common.logic-uksouth.azure-apihub.net/apim/servicebus/9a03897dad4943d89e01fff8d3e6677b/",
       "authentication": {
         "type": "Raw",
         "scheme": "Key",
