@@ -149,7 +149,7 @@
               },
               {
                 "name": "serviceBus_12_connectionString", 
-                "value":"Endpoint=sb://contosoqueues.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=tX7Jwc9EdjwkdLTzMxNKu1uC1rwcZYfZOZBtKEbL7is="
+                "value":"@Microsoft.KeyVault(SecretUri=https://vaultuk.vault.azure.net/secrets/sbconnection/fb818a0d9fb74e138b397bb4629f39cb)"
               }              
             ]
           },
