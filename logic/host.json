@@ -3,5 +3,15 @@
   "extensionBundle": {
     "id": "Microsoft.Azure.Functions.ExtensionBundle.Workflows",
     "version": "[1.*, 2.0.0)"
-  }
+  },
+  "extensions": {
+    "serviceBus": {
+        "prefetchCount": 10,
+        "messageHandlerOptions": {
+            "autoComplete": true,
+            "maxConcurrentCalls": 32,
+            "maxAutoRenewDuration": "00:05:00"
+        }
+    }
+}
 }

@@ -8,38 +8,7 @@
                 "inputs": {
                     "statusCode": 200
                 },
-                "runAfter": {
-                    "Create_blob_(V2)": [
-                        "Succeeded"
-                    ]
-                }
-            },
-            "Create_blob_(V2)": {
-                "type": "ApiConnection",
-                "inputs": {
-                    "host": {
-                        "connection": {
-                            "referenceName": "azureblob"
-                        }
-                    },
-                    "method": "post",
-                    "body": "@triggerBody()",
-                    "headers": {
-                        "ReadFileMetadataFromServer": true
-                    },
-                    "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('pri5s7ephv4l6bc'))}/files",
-                    "queries": {
-                        "folderPath": "/blobs/newchange",
-                        "name": "@{utcNow()}",
-                        "queryParametersSingleEncoded": true
-                    }
-                },
-                "runAfter": {},
-                "runtimeConfiguration": {
-                    "contentTransfer": {
-                        "transferMode": "Chunked"
-                    }
-                }
+                "runAfter": {}
             }
         },
         "triggers": {

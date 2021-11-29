@@ -10,7 +10,7 @@
                             "id": "eventprocessor"
                         }
                     },
-                    "body": "demo content"
+                    "body": "@triggerOutputs()?['body']"
                 },
                 "runAfter": {}
             }
