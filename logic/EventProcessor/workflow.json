@@ -17,11 +17,52 @@
                 "kind": "Http",
                 "inputs": {
                     "schema": {
-                        "name": "name",
-                        "number": "number",
-                        "item": "coffee",
-                        "quantity": 2,
-                        "address": "1 coffee Lane"
+                        "type": "object",
+                        "properties": {
+                            "contentData": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "FileName": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "FileName"
+                                    ]
+                                }
+                            },
+                            "contentType": {
+                                "type": "string"
+                            },
+                            "userProperties": {
+                                "type": "object",
+                                "properties": {
+                                    "sec-Fetch-Site": {
+                                        "type": "string"
+                                    },
+                                    "sec-Fetch-Mode": {
+                                        "type": "string"
+                                    },
+                                    "sec-Fetch-Dest": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "messageId": {
+                                "type": "string"
+                            },
+                            "scheduledEnqueueTimeUtc": {
+                                "type": "string"
+                            },
+                            "sessionId": {
+                                "type": "string"
+                            },
+                            "timeToLive": {
+                                "type": "string"
+                            }
+                        }
                     }
                 }
             }
