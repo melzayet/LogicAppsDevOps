@@ -38,6 +38,7 @@
                                 "case": "09",
                                 "actions": {
                                     "Dead-letter_the_message_in_a_queue": {
+                                        "type": "ApiConnection",
                                         "inputs": {
                                             "host": {
                                                 "connection": {
@@ -47,14 +48,13 @@
                                             "method": "post",
                                             "path": "/@{encodeURIComponent(encodeURIComponent('user-updated'))}/messages/deadletter",
                                             "queries": {
-                                                "deadLetterErrorDescription": "Missing required fields",
-                                                "deadLetterReason": "Invalid message",
                                                 "lockToken": "@triggerBody()?['LockToken']",
+                                                "deadLetterReason": "Invalid message",
+                                                "deadLetterErrorDescription": "Missing required fields",
                                                 "sessionId": ""
                                             }
                                         },
-                                        "runAfter": {},
-                                        "type": "ApiConnection"
+                                        "runAfter": {}
                                     },
                                     "Terminate_after_SubscriberDeliveryFailed_InvalidMessage": {
                                         "type": "Terminate",
@@ -109,6 +109,7 @@
                                 "case": "08",
                                 "actions": {
                                     "Complete_the_stale_message_in_a_queue": {
+                                        "type": "ApiConnection",
                                         "inputs": {
                                             "host": {
                                                 "connection": {
@@ -123,8 +124,7 @@
                                                 "sessionId": ""
                                             }
                                         },
-                                        "runAfter": {},
-                                        "type": "ApiConnection"
+                                        "runAfter": {}
                                     },
                                     "Terminate_after_SubscriberDeliveryDiscardedStaleMessage": {
                                         "type": "Terminate",
@@ -223,9 +223,7 @@
         },
         "triggers": {
             "When_a_message_is_received_in_a_queue_(peek-lock)": {
-                "correlation": {
-                    "clientTrackingId": "@{if(empty(triggerBody()), guid(), triggerBody()['Properties']?['ClientTrackingId'])}"
-                },
+                "type": "ApiConnection",
                 "inputs": {
                     "host": {
                         "connection": {
@@ -235,14 +233,17 @@
                     "method": "get",
                     "path": "/@{encodeURIComponent(encodeURIComponent('user-updated'))}/messages/head/peek",
                     "queries": {
-                        "queueType": "Main"
+                        "queueType": "Main",
+                        "sessionId": "Next Available"
                     }
+                },
+                "correlation": {
+                    "clientTrackingId": "@{if(empty(triggerBody()), guid(), triggerBody()['Properties']?['ClientTrackingId'])}"
                 },
                 "recurrence": {
                     "frequency": "Second",
                     "interval": 10
-                },
-                "type": "ApiConnection"
+                }
             }
         },
         "contentVersion": "1.0.0.0",

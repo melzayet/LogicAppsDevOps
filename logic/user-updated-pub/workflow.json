@@ -72,6 +72,7 @@
                             },
                             "method": "post",
                             "body": {
+                                "SessionId": "@items('For_each_message_in_batch')['email']",
                                 "ContentData": "@{base64(outputs('Enrich_message')?['body'])}",
                                 "ContentType": "application/json",
                                 "Properties": {
