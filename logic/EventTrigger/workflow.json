@@ -9,27 +9,55 @@
                         "workflow": {
                             "id": "eventprocessor"
                         }
-                    },
-                    "body": "@triggerOutputs()?['body']"
+                    }
                 },
                 "runAfter": {}
+            },
+            "Complete_the_message_in_a_queue": {
+                "type": "ApiConnection",
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "referenceName": "servicebus_1"
+                        }
+                    },
+                    "method": "delete",
+                    "path": "/@{encodeURIComponent(encodeURIComponent('filesarrival'))}/messages/complete",
+                    "queries": {
+                        "lockToken": "@triggerBody()?['LockToken']",
+                        "queueType": "Main",
+                        "sessionId": ""
+                    }
+                },
+                "runAfter": {
+                    "Invoke_a_workflow_in_this_workflow_app": [
+                        "Succeeded"
+                    ]
+                }
             }
         },
         "triggers": {
-            "When_messages_are_available_in_a_queue": {
-                "type": "ServiceProvider",
+            "When_one_or_more_messages_arrive_in_a_queue_(peek-lock)": {
+                "type": "ApiConnection",
                 "inputs": {
-                    "parameters": {
-                        "queueName": "filesarrival",
-                        "isSessionsEnabled": true
+                    "host": {
+                        "connection": {
+                            "referenceName": "servicebus_1"
+                        }
                     },
-                    "serviceProviderConfiguration": {
-                        "connectionName": "serviceBus-2",
-                        "operationId": "receiveQueueMessages",
-                        "serviceProviderId": "/serviceProviders/serviceBus"
+                    "method": "get",
+                    "path": "/@{encodeURIComponent(encodeURIComponent('filesarrival'))}/messages/batch/head/peek",
+                    "queries": {
+                        "maxMessageCount": 20,
+                        "queueType": "Main",
+                        "sessionId": "Next Available"
                     }
                 },
-                "splitOn": "@triggerOutputs()?['body']"
+                "recurrence": {
+                    "frequency": "Second",
+                    "interval": 15
+                },
+                "splitOn": "@triggerBody()"
             }
         },
         "contentVersion": "1.0.0.0",
