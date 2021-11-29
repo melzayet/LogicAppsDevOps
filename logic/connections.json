@@ -10,7 +10,7 @@
       "connectionRuntimeUrl": "@appsetting('BLOB_CONNECTION_RUNTIMEURL')",
       "authentication": "@parameters('blob_auth')"
     },
-    "servicebus_1": {
+    "servicebus": {
       "api": {
         "id": "/subscriptions/f5868587-4ac8-4a33-aaff-3299dfe021f4/providers/Microsoft.Web/locations/uksouth/managedApis/servicebus"
       },
