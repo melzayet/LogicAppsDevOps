@@ -25,33 +25,5 @@
       }
     }
   },
-  "serviceProviderConnections": {
-    "serviceBus": {
-      "parameterValues": {
-        "connectionString": "@appsetting('serviceBus_connectionString')"
-      },
-      "serviceProvider": {
-        "id": "/serviceProviders/serviceBus"
-      },
-      "displayName": "servicebus"
-    },
-    "serviceBus-2": {
-      "parameterValues": {
-        "connectionString": "@appsetting('serviceBus_12_connectionString')"
-      },
-      "serviceProvider": {
-        "id": "/serviceProviders/serviceBus"
-      },
-      "displayName": "servicebusconnection"
-    },
-    "AzureBlob": {
-      "parameterValues": {
-        "connectionString": "@appsetting('AzureBlob_connectionString')"
-      },
-      "serviceProvider": {
-        "id": "/serviceProviders/AzureBlob"
-      },
-      "displayName": "BlobConnection"
-    }
-  }
+  "serviceProviderConnections": {}
 }

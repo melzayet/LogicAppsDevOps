@@ -1,0 +1,252 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Delay": {
+                "type": "Wait",
+                "inputs": {
+                    "interval": {
+                        "count": 10,
+                        "unit": "Second"
+                    }
+                },
+                "runAfter": {
+                    "Trace_workflow_metadata": [
+                        "Succeeded"
+                    ]
+                },
+                "description": "This delay is required so that the workflow metadata tracing is persisted. In many cases, a terminate action prevents tracking properties to be persisted. "
+            },
+            "If_simulate_a_failed_delivery_attempt": {
+                "type": "If",
+                "expression": {
+                    "and": [
+                        {
+                            "contains": [
+                                "[\"06\", \"07\", \"08, \"09\"]",
+                                "@substring(body('Parse_message')?['phoneNumber'], sub(length(body('Parse_message')?['phoneNumber']), 2))"
+                            ]
+                        }
+                    ]
+                },
+                "actions": {
+                    "Switch_to_simulate_a_failed_delivery_attempt_to_target_system": {
+                        "type": "Switch",
+                        "expression": "@{substring(body('Parse_message')?['phoneNumber'], sub(length(body('Parse_message')?['phoneNumber']), 2))}",
+                        "cases": {
+                            "Invalid_message_(09)": {
+                                "case": "09",
+                                "actions": {
+                                    "Dead-letter_the_message_in_a_queue": {
+                                        "inputs": {
+                                            "host": {
+                                                "connection": {
+                                                    "referenceName": "servicebus_1"
+                                                }
+                                            },
+                                            "method": "post",
+                                            "path": "/@{encodeURIComponent(encodeURIComponent('user-updated'))}/messages/deadletter",
+                                            "queries": {
+                                                "deadLetterErrorDescription": "Missing required fields",
+                                                "deadLetterReason": "Invalid message",
+                                                "lockToken": "@triggerBody()?['LockToken']",
+                                                "sessionId": ""
+                                            }
+                                        },
+                                        "runAfter": {},
+                                        "type": "ApiConnection"
+                                    },
+                                    "Terminate_after_SubscriberDeliveryFailed_InvalidMessage": {
+                                        "type": "Terminate",
+                                        "inputs": {
+                                            "runStatus": "Failed",
+                                            "runError": {
+                                                "code": "SubscriberDeliveryFailed_InvalidMessage",
+                                                "message": "Invalid message. Message has been dead-lettered."
+                                            }
+                                        },
+                                        "runAfter": {
+                                            "Dead-letter_the_message_in_a_queue": [
+                                                "Succeeded"
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            "Missing_dependency_(07)": {
+                                "case": "07",
+                                "actions": {
+                                    "If_first_attempt": {
+                                        "type": "If",
+                                        "expression": {
+                                            "and": [
+                                                {
+                                                    "equals": [
+                                                        "@{triggerBody()?['Properties']?['DeliveryCount']}",
+                                                        "1"
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        "actions": {
+                                            "Terminate_after_SubscriberDeliveryFailed_MissingDependency": {
+                                                "type": "Terminate",
+                                                "inputs": {
+                                                    "runStatus": "Failed",
+                                                    "runError": {
+                                                        "code": "SubscriberDeliveryFailed_MissingDependency",
+                                                        "message": "Dependency in target system is not available. DeliveryCount: @{triggerBody()?['Properties']?['DeliveryCount']}. Message has not been settled. If max delivery count has not been reached, a retry is expected. "
+                                                    }
+                                                },
+                                                "runAfter": {}
+                                            }
+                                        },
+                                        "runAfter": {}
+                                    }
+                                }
+                            },
+                            "Stale_message_(08)": {
+                                "case": "08",
+                                "actions": {
+                                    "Complete_the_stale_message_in_a_queue": {
+                                        "inputs": {
+                                            "host": {
+                                                "connection": {
+                                                    "referenceName": "servicebus_1"
+                                                }
+                                            },
+                                            "method": "delete",
+                                            "path": "/@{encodeURIComponent(encodeURIComponent('user-updated'))}/messages/complete",
+                                            "queries": {
+                                                "lockToken": "@triggerBody()?['LockToken']",
+                                                "queueType": "Main",
+                                                "sessionId": ""
+                                            }
+                                        },
+                                        "runAfter": {},
+                                        "type": "ApiConnection"
+                                    },
+                                    "Terminate_after_SubscriberDeliveryDiscardedStaleMessage": {
+                                        "type": "Terminate",
+                                        "inputs": {
+                                            "runStatus": "Cancelled"
+                                        },
+                                        "runAfter": {
+                                            "Complete_the_stale_message_in_a_queue": [
+                                                "Succeeded"
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            "Unable_to_reach_target_system_(06)": {
+                                "case": "06",
+                                "actions": {
+                                    "Terminate_after_SubscriberDeliveryFailed_UnreachableTarget": {
+                                        "description": "Terminate and do not settle the message for a retry or automatic dead-lettering",
+                                        "type": "Terminate",
+                                        "inputs": {
+                                            "runStatus": "Failed",
+                                            "runError": {
+                                                "code": "SubscriberDeliveryFailed_UnreachableTarget",
+                                                "message": "Target system is unreachable. DeliveryCount: @{triggerBody()?['Properties']?['DeliveryCount']}. Message has not been settled. If max delivery count has not been reached, a retry is expected. "
+                                            }
+                                        },
+                                        "runAfter": {}
+                                    }
+                                }
+                            }
+                        },
+                        "default": {
+                            "actions": {}
+                        },
+                        "runAfter": {},
+                        "description": "Simulate delivery attempt to target system"
+                    }
+                },
+                "runAfter": {
+                    "Parse_message": [
+                        "Succeeded"
+                    ]
+                }
+            },
+            "Parse_message": {
+                "type": "ParseJson",
+                "inputs": {
+                    "content": "@json(base64ToString(triggerBody()?['ContentData']))",
+                    "schema": {
+                        "properties": {
+                            "email": {
+                                "type": "string"
+                            },
+                            "familyName": {
+                                "type": "string"
+                            },
+                            "givenName": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "integer"
+                            },
+                            "phoneNumber": {
+                                "type": "string"
+                            },
+                            "role": {
+                                "type": "string"
+                            },
+                            "timestamp": {
+                                "type": "string"
+                            },
+                            "userName": {
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "runAfter": {
+                    "Delay": [
+                        "Succeeded"
+                    ]
+                }
+            },
+            "Trace_workflow_metadata": {
+                "type": "Compose",
+                "inputs": {
+                    "InterfaceId": "USER.SVC01.S01v1"
+                },
+                "runAfter": {},
+                "trackedProperties": {
+                    "InterfaceId": "@{outputs('Trace_workflow_metadata')?['InterfaceId']}"
+                }
+            }
+        },
+        "triggers": {
+            "When_a_message_is_received_in_a_queue_(peek-lock)": {
+                "correlation": {
+                    "clientTrackingId": "@{if(empty(triggerBody()), guid(), triggerBody()['Properties']?['ClientTrackingId'])}"
+                },
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "referenceName": "servicebus_1"
+                        }
+                    },
+                    "method": "get",
+                    "path": "/@{encodeURIComponent(encodeURIComponent('user-updated'))}/messages/head/peek",
+                    "queries": {
+                        "queueType": "Main"
+                    }
+                },
+                "recurrence": {
+                    "frequency": "Second",
+                    "interval": 10
+                },
+                "type": "ApiConnection"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {}
+    },
+    "kind": "Stateful"
+}
