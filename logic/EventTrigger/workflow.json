@@ -20,8 +20,8 @@
                 "type": "ServiceProvider",
                 "inputs": {
                     "parameters": {
-                        "queueName": "neworders",
-                        "isSessionsEnabled": false
+                        "queueName": "filesarrival",
+                        "isSessionsEnabled": true
                     },
                     "serviceProviderConfiguration": {
                         "connectionName": "serviceBus-2",
