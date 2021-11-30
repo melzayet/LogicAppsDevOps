@@ -57,11 +57,12 @@ jobs:
         path: ./build-art/
         
     - name: Deploy to Azure Logic App
-      uses: Azure/functions-action@v1.3.1
+      uses: Azure/functions-action@v1
       id: la
       with:
         app-name: ${{secrets.RG_LA}}
         package: './build-art/logic.zip'
+        slot-name: 'production'
         publish-profile: ${{secrets.AIS_DEMO_DEV_PUBLISH_PROFILE}}
 
     - name: Swap parameter files 
