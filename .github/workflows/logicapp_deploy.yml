@@ -56,25 +56,13 @@ jobs:
         name: logic
         path: ./build-art/
         
-    - name: Get publish Profile
-      id: publishprofile
-      uses: azure/powershell@v1
-      with:
-        inlineScript: |
-          $profile = Get-AzWebAppPublishingProfile `
-              -ResourceGroupName ${{ secrets.RG_LA }} `
-              -Name ${{ env.LA_NAME }}
-          $profile = $profile.Replace("`r", "").Replace("`n", "")
-          Write-Output "::set-output name=profile::$profile"
-        azPSVersion: latest
-
     - name: Deploy to Azure Logic App
       uses: Azure/functions-action@v1.3.1
       id: la
       with:
         app-name: ${{secrets.RG_LA}}
         package: './build-art/logic.zip'
-        publish-profile: ${{steps.publishprofile.outputs.profile}}
+        publish-profile: ${{secrets.AIS_DEMO_DEV_PUBLISH_PROFILE}}
 
     - name: Swap parameter files 
       id: params
@@ -103,25 +91,13 @@ jobs:
         name: logic
         path: ./build-art/
         
-    - name: Get publish Profile
-      id: publishprofile
-      uses: azure/powershell@v1
-      with:
-        inlineScript: |
-          $profile = Get-AzWebAppPublishingProfile `
-              -ResourceGroupName ${{ secrets.RG_LA }} `
-              -Name ${{ env.LA_NAME_prod }}
-          $profile = $profile.Replace("`r", "").Replace("`n", "")
-          Write-Output "::set-output name=profile::$profile"
-        azPSVersion: latest
-
     - name: Deploy to Azure Logic App
       uses: Azure/functions-action@v1.3.1
       id: la
       with:
         app-name: ${{secrets.RG_LA}}
         package: './build-art/logic.zip'
-        publish-profile: ${{steps.publishprofile.outputs.profile}}
+        publish-profile: ${{secrets.AIS_DEMO_DEV_PUBLISH_PROFILE}}
 
     - name: Swap parameter files 
       id: params
