@@ -61,8 +61,7 @@ jobs:
       id: la
       with:
         app-name: ${{secrets.RG_LA}}
-        package: './build-art/logic.zip'
-        slot-name: 'production'
+        package: './build-art/logic.zip'        
         publish-profile: ${{secrets.AIS_DEMO_DEV_PUBLISH_PROFILE}}
 
     - name: Swap parameter files 
