@@ -64,13 +64,10 @@ jobs:
         package: './build-art/logic.zip'        
         publish-profile: ${{secrets.AIS_DEMO_DEV_PUBLISH_PROFILE}}
 
-    - name: Swap parameter files 
-      uses: azure/CLI@v1
+    - name: Swap parameter files      
       id: params
-      with:
-        azcliversion: 2.0.72
-        inlineScript: |                
-          az functionapp deploy --resource-group ${{ secrets.RG_LA }} --name ${{ env.LA_NAME }} --src-path  logic/azure.parameters.json --type static --target-path parameters.json        
+      run: |              
+        az functionapp deploy --resource-group ${{ secrets.RG_LA }} --name ${{ env.LA_NAME }} --src-path  logic/azure.parameters.json --type static --target-path parameters.json        
 
   logic_app_deploy_prod: 
     name: Deploy Prod 
@@ -100,10 +97,6 @@ jobs:
         publish-profile: ${{secrets.AIS_DEMO_DEV_PUBLISH_PROFILE}}
 
 
-    - name: Swap parameter files 
-      uses: azure/CLI@v1
+    - name: Swap parameter files       
       id: params
-      with:
-        azcliversion: 2.0.72
-        inlineScript: |                
-          az functionapp deploy --resource-group ${{ secrets.RG_LA }} --name ${{ env.LA_NAME_prod }} --src-path  logic/azure.parameters.json --type static --target-path parameters.json
+      run: az functionapp deploy --resource-group ${{ secrets.RG_LA }} --name ${{ env.LA_NAME_prod }} --src-path  logic/azure.parameters.json --type static --target-path parameters.json
