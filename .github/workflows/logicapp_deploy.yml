@@ -24,7 +24,7 @@ on:
 jobs:
   logic_app_build: 
     name: Build 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps: 
     - name: Checkout
       uses: actions/checkout@v1
@@ -39,7 +39,7 @@ jobs:
 
   logic_app_deploy_dev: 
     name: Deploy Dev 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [logic_app_build]
     environment: 
       name: dev
@@ -86,7 +86,7 @@ jobs:
 
   logic_app_deploy_prod: 
     name: Deploy Prod 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [logic_app_deploy_dev]
     environment: 
       name: prod
