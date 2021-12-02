@@ -14,13 +14,11 @@
                                     "id": "user-updated-pub-enricher"
                                 }
                             },
-                            "headers": {
-                                "x-client-tracking-id ": "@body('Parse_message')?['email']"
-                            },
+                            "headers": "@union(triggerOutputs().Headers, @{outputs('NewHeaders')})",
                             "body": "@body('Parse_message')"
                         },
                         "runAfter": {
-                            "Parse_message": [
+                            "NewHeaders": [
                                 "Succeeded"
                             ]
                         }
@@ -109,6 +107,17 @@
                         },
                         "runAfter": {
                             "Enrich_message": [
+                                "Succeeded"
+                            ]
+                        }
+                    },
+                    "NewHeaders": {
+                        "type": "Compose",
+                        "inputs": {
+                            "x-client-tracking-id ": "@body('Parse_message')?['email']"
+                        },
+                        "runAfter": {
+                            "Parse_message": [
                                 "Succeeded"
                             ]
                         }
