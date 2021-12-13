@@ -6,5 +6,10 @@
       "scheme": "Key",
       "parameter": "@appsetting('azureblob-connectionKey')"
     }
+  },
+  "sb_auth": {
+    "type": "Raw",
+    "scheme": "Key",
+    "parameter": "@appsetting('servicebus-connectionKey')"
   }
 }

@@ -4,6 +4,12 @@
         "value": {
             "type": "ManagedServiceIdentity"
         }
+    },
+    "sb_auth": {
+        "type":"object", 
+        "value": {
+            "type": "ManagedServiceIdentity"
+        }
     }
 
 }
