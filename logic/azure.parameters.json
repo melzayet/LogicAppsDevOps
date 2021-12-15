@@ -11,45 +11,26 @@
             "type": "ManagedServiceIdentity"
         }
     },  
+    "api_scope": {
+        "type": "string",
+        "value": "@appsetting('api_scope')"
+      },
+    "apim_sub_key": {
+        "type": "string",
+        "value": "@appsetting('apim_sub_key')"            
+    },
+
     "client_id": {
-        "type": "object",
-        "value": {
-          "type": "Raw",
-          "scheme": "Key",
-          "parameter": "@appsetting('client_id')"
-        }
-      },
-      "client_secret": {
-        "type": "object",
-        "value": {
-          "type": "Raw",
-          "scheme": "Key",
-          "parameter": "@appsetting('client_secret')"
-        }
-      },
-      "apim_sub_key": {
-        "type": "object",
-        "value": {
-          "type": "Raw",
-          "scheme": "Key",
-          "parameter": "@appsetting('apim_sub_key')"
-        }
-      },
-      "tenant_id": {
-        "type": "object",
-        "value": {
-          "type": "Raw",
-          "scheme": "Key",
-          "parameter": "@appsetting('tenant_id')"
-        }
-      },
-      "api_scope": {
-        "type": "object",
-        "value": {
-          "type": "Raw",
-          "scheme": "Key",
-          "parameter": "@appsetting('api_scope')"
-        }
-      }
+        "type": "string",
+        "value": "@appsetting('client_id')"
+    },
+    "client_secret": {
+        "type": "string",
+        "value": "@appsetting('client_secret')"
+    },
+    "tenant_id": {
+        "type": "string",
+        "value": "@appsetting('tenant_id')"
+    }
 
 }
