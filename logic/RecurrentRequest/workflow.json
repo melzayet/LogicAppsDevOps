@@ -1,0 +1,249 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "HTTP": {
+                "type": "Http",
+                "inputs": {
+                    "method": "POST",
+                    "uri": "https://daidemosapim.azure-api.net/responseflow",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "Ocp-Apim-Subscription-Key": "@parameters('apim_sub_key')"
+                    },
+                    "body": {
+                        "data": [
+                            {
+                                "email": "janea@demo.com.au",
+                                "familyName": "A",
+                                "givenName": "Jane",
+                                "id": 1,
+                                "phoneNumber": "00 000 000 000",
+                                "role": "Super Manager",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "janea"
+                            },
+                            {
+                                "email": "johnb@demo.com.au",
+                                "familyName": "B",
+                                "givenName": "John",
+                                "id": 2,
+                                "phoneNumber": "00 000 000 000",
+                                "role": "Super Role",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "johnb"
+                            },
+                            {
+                                "email": "luciec@demo.com.au",
+                                "familyName": "C",
+                                "givenName": "Lucie",
+                                "id": 3,
+                                "phoneNumber": "00 000 000 000",
+                                "role": "Super Manager",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "luciec"
+                            },
+                            {
+                                "email": "abrahamd@demo.com.au",
+                                "familyName": "D",
+                                "givenName": "Abraham",
+                                "id": 4,
+                                "phoneNumber": "00 000 000 000",
+                                "role": "Super Role",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "abrahamd"
+                            },
+                            {
+                                "email": "paulae@demo.com.au",
+                                "familyName": "E",
+                                "givenName": "Paula",
+                                "id": 5,
+                                "phoneNumber": "00 000 000 000",
+                                "role": "Super Manager",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "paulae"
+                            },
+                            {
+                                "email": "pearlf@demo.com.au",
+                                "familyName": "F",
+                                "givenName": "Pearl",
+                                "id": 6,
+                                "phoneNumber": "00 000 000 000",
+                                "role": "Super Role",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "pearlf"
+                            },
+                            {
+                                "email": "aliceg@demo.com.au",
+                                "familyName": "G",
+                                "givenName": "Alice",
+                                "id": 7,
+                                "phoneNumber": "00 000 000 099",
+                                "role": "Super Manager",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "aliceg"
+                            },
+                            {
+                                "email": "kennethh@demo.com.au",
+                                "familyName": "H",
+                                "givenName": "Kenneth",
+                                "id": 8,
+                                "phoneNumber": "00 000 000 009",
+                                "role": "Super Role",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "kennethh"
+                            },
+                            {
+                                "email": "racheli@demo.com.au",
+                                "familyName": "I",
+                                "givenName": "Rachel",
+                                "id": 9,
+                                "phoneNumber": "00 000 000 008",
+                                "role": "Super Manager",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "racheli"
+                            },
+                            {
+                                "email": "eldredj@demo.com.au",
+                                "familyName": "J",
+                                "givenName": "Eldred",
+                                "id": 10,
+                                "phoneNumber": "00 000 000 007",
+                                "role": "Super Role",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "eldredj"
+                            },
+                            {
+                                "email": "juliek@demo.com.au",
+                                "familyName": "K",
+                                "givenName": "Julie",
+                                "id": 11,
+                                "phoneNumber": "00 000 000 007",
+                                "role": "Super Manager",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "juliek"
+                            },
+                            {
+                                "email": "jasperl@demo.com.au",
+                                "familyName": "L",
+                                "givenName": "Jasper",
+                                "id": 12,
+                                "phoneNumber": "00 000 000 007",
+                                "role": "Super Role",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "jasperl"
+                            },
+                            {
+                                "email": "roselynm@demo.com.au",
+                                "familyName": "M",
+                                "givenName": "Roselyn",
+                                "id": 13,
+                                "phoneNumber": "00 000 000 007",
+                                "role": "Super Manager",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "roselynm"
+                            },
+                            {
+                                "email": "ralphn@demo.com.au",
+                                "familyName": "N",
+                                "givenName": "Ralph",
+                                "id": 14,
+                                "phoneNumber": "00 000 000 006",
+                                "role": "Super Role",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "ralphn"
+                            },
+                            {
+                                "email": "adelineo@demo.com.au",
+                                "familyName": "O",
+                                "givenName": "Adeline",
+                                "id": 15,
+                                "phoneNumber": "00 000 000 005",
+                                "role": "Super Manager",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "adelineo"
+                            },
+                            {
+                                "email": "lucasp@demo.com.au",
+                                "familyName": "P",
+                                "givenName": "Lucas",
+                                "id": 16,
+                                "phoneNumber": "00 000 000 004",
+                                "role": "Super Role",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "lucasp"
+                            },
+                            {
+                                "email": "mariaq@demo.com.au",
+                                "familyName": "Q",
+                                "givenName": "Maria",
+                                "id": 17,
+                                "phoneNumber": "00 000 000 003",
+                                "role": "Super Manager",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "mariaq"
+                            },
+                            {
+                                "email": "gonzalor@demo.com.au",
+                                "familyName": "R",
+                                "givenName": "Gonzalo",
+                                "id": 18,
+                                "phoneNumber": "00 000 000 002",
+                                "role": "Super Role",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "gonzalor"
+                            },
+                            {
+                                "email": "marions@demo.com.au",
+                                "familyName": "S",
+                                "givenName": "Marion",
+                                "id": 19,
+                                "phoneNumber": "00 000 000 001",
+                                "role": "Super Manager",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "marions"
+                            },
+                            {
+                                "email": "patrickt@demo.com.au",
+                                "familyName": "T",
+                                "givenName": "Patrick",
+                                "id": 20,
+                                "phoneNumber": "00 000 000 000",
+                                "role": "Super Role",
+                                "timestamp": "2021-09-29T17:31:00Z",
+                                "userName": "patrickt"
+                            }
+                        ],
+                        "datacontenttype": "application/json",
+                        "id": "2000000000200",
+                        "source": "ClientApp",
+                        "specversion": "1.0",
+                        "subject": null,
+                        "time": "2021-09-29T18:00:00Z",
+                        "type": "user.updated"
+                    },
+                    "authentication": {
+                        "type": "ActiveDirectoryOAuth",
+                        "tenant": "@parameters('tenant_id')",
+                        "audience": "@parameters('api_scope')",
+                        "clientId": "@parameters('client_id')",
+                        "secret": "@parameters('client_secret')"
+                    }
+                },
+                "runAfter": {}
+            }
+        },
+        "triggers": {
+            "Recurrence": {
+                "type": "Recurrence",
+                "recurrence": {
+                    "frequency": "Hour",
+                    "interval": 1
+                }
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {}
+    },
+    "kind": "Stateful"
+}

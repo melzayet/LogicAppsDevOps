@@ -10,6 +10,46 @@
         "value": {
             "type": "ManagedServiceIdentity"
         }
-    }
+    },  
+    "client_id": {
+        "type": "object",
+        "value": {
+          "type": "Raw",
+          "scheme": "Key",
+          "parameter": "@appsetting('client_id')"
+        }
+      },
+      "client_secret": {
+        "type": "object",
+        "value": {
+          "type": "Raw",
+          "scheme": "Key",
+          "parameter": "@appsetting('client_secret')"
+        }
+      },
+      "apim_sub_key": {
+        "type": "object",
+        "value": {
+          "type": "Raw",
+          "scheme": "Key",
+          "parameter": "@appsetting('apim_sub_key')"
+        }
+      },
+      "tenant_id": {
+        "type": "object",
+        "value": {
+          "type": "Raw",
+          "scheme": "Key",
+          "parameter": "@appsetting('tenant_id')"
+        }
+      },
+      "api_scope": {
+        "type": "object",
+        "value": {
+          "type": "Raw",
+          "scheme": "Key",
+          "parameter": "@appsetting('api_scope')"
+        }
+      }
 
 }
