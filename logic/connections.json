@@ -18,7 +18,7 @@
         "id": "/subscriptions/f5868587-4ac8-4a33-aaff-3299dfe021f4/resourceGroups/AIS-DEMOS-CONNECTIONS/providers/Microsoft.Web/connections/servicebus"
       },
       "connectionRuntimeUrl": "https://70c0e3bcb44fa056.05.common.logic-uksouth.azure-apihub.net/apim/servicebus/a08deb13ae9b4fbfbf983eec97ec7a24/",
-      "authentication": "@parameters('sb_auth')"      
+      "authentication": "@parameters('sb_auth')"
     }
   },
   "serviceProviderConnections": {
@@ -30,6 +30,15 @@
         "id": "/serviceProviders/AzureBlob"
       },
       "displayName": "aisdemocon"
+    },
+    "serviceBus": {
+      "parameterValues": {
+        "connectionString": "@appsetting('serviceBus_connectionString')"
+      },
+      "serviceProvider": {
+        "id": "/serviceProviders/serviceBus"
+      },
+      "displayName": "ServiceBusPremiumPrivate"
     }
   }
 }
