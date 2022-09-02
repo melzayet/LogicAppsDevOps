@@ -39,7 +39,7 @@ jobs:
 
   logic_app_deploy_dev: 
     name: Deploy Dev 
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     needs: [logic_app_build]
     environment: 
       name: dev
