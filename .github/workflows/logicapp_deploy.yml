@@ -46,11 +46,13 @@ jobs:
     steps: 
     - name: Checkout
       uses: actions/checkout@v1    
-    - name: Login via Az module
+    - name: 'Az CLI login'
       uses: azure/login@v1
       with:
-        creds: ${{secrets.AZURE_CREDENTIALS}}
-        enable-AzPSSession: false 
+        client-id: ${{ secrets.CLIENT_ID }}
+        tenant-id: ${{ secrets.TENANT_ID }}
+        subscription-id: ${{ secrets.SUB_ID }}
+
     - uses: actions/download-artifact@master
       with:
         name: logic
@@ -62,7 +64,6 @@ jobs:
       with:
         app-name: ${{secrets.RG_LA}}
         package: './build-art/logic.zip'        
-        publish-profile: ${{secrets.AIS_DEMO_DEV_PUBLISH_PROFILE}}
 
     - name: Swap parameter files      
       id: params
@@ -78,11 +79,13 @@ jobs:
     steps: 
     - name: Checkout
       uses: actions/checkout@v1    
-    - name: Login via Az module
+    - name: 'Az CLI login'
       uses: azure/login@v1
       with:
-        creds: ${{secrets.AZURE_CREDENTIALS}}
-        enable-AzPSSession: false 
+        client-id: ${{ secrets.CLIENT_ID }}
+        tenant-id: ${{ secrets.TENANT_ID }}
+        subscription-id: ${{ secrets.SUB_ID }}
+
     - uses: actions/download-artifact@master
       with:
         name: logic
@@ -94,7 +97,6 @@ jobs:
       with:
         app-name: ${{secrets.RG_LA}}
         package: './build-art/logic.zip'
-        publish-profile: ${{secrets.AIS_DEMO_DEV_PUBLISH_PROFILE}}
 
 
     - name: Swap parameter files       

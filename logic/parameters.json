@@ -20,20 +20,19 @@
     "value": "@appsetting('api_scope')"
   },
   "apim_sub_key": {
-      "type": "string",
-      "value": "@appsetting('apim_sub_key')"            
+    "type": "string",
+    "value": "@appsetting('apim_sub_key')"
   },
-
   "client_id": {
-      "type": "string",
-      "value": "@appsetting('client_id')"
+    "type": "string",
+    "value": "@appsetting('client_id')"
   },
   "client_secret": {
-      "type": "string",
-      "value": "@appsetting('client_secret')"
+    "type": "string",
+    "value": "@appsetting('client_secret')"
   },
   "tenant_id": {
-      "type": "string",
-      "value": "@appsetting('tenant_id')"
+    "type": "string",
+    "value": "@appsetting('tenant_id')"
   }
 }

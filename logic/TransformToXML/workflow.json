@@ -25,6 +25,19 @@
                     }
                 },
                 "runAfter": {}
+            },
+            "Response": {
+                "type": "Response",
+                "kind": "http",
+                "inputs": {
+                    "statusCode": 200,
+                    "body": "@body('Transform_XML')"
+                },
+                "runAfter": {
+                    "Transform_XML": [
+                        "Succeeded"
+                    ]
+                }
             }
         },
         "triggers": {
