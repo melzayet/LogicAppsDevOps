@@ -39,7 +39,7 @@ jobs:
       with:
         # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID, AZURE_RESOURCE_GROUP
         scope: resourcegroup  
-        subscriptionId: ${{ secrets.AZURE_SUB }}
+        subscriptionId: ${{ secrets.SUB_ID }}
         resourceGroupName:  ${{ secrets.RG_LA }}
         template: ARM/la-template.json  # Set this to the location of your template file
         parameters: ARM/la-parameters.json # Set this to the location of your parameters file
@@ -51,7 +51,7 @@ jobs:
       uses: Azure/arm-deploy@v1.0.1
       with:
         scope: resourcegroup  
-        subscriptionId: ${{ secrets.AZURE_SUB }}
+        subscriptionId: ${{ secrets.SUB_ID }}
         resourceGroupName: ${{ secrets.RG_CON }}
         template: ARM/connectors-template.json  # Set this to the location of your template file
         parameters: ARM/connectors-parameters.json logicAppSystemAssignedIdentityTenantId=${{ steps.ladeploy.outputs.logicAppSystemAssignedIdentityTenantId }} logicAppSystemAssignedIdentityObjectId=${{ steps.ladeploy.outputs.logicAppSystemAssignedIdentityObjectId }}
@@ -93,7 +93,7 @@ jobs:
       with:
         # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID, AZURE_RESOURCE_GROUP
         scope: resourcegroup  
-        subscriptionId: ${{ secrets.AZURE_SUB }}
+        subscriptionId: ${{ secrets.SUB_ID }}
         resourceGroupName:  ${{ secrets.RG_LA }}
         template: ARM/la-template.json  # Set this to the location of your template file
         parameters: ARM/la-parameters.prod.json # Set this to the location of your parameters file
@@ -105,7 +105,7 @@ jobs:
       uses: Azure/arm-deploy@v1.0.1
       with:
         scope: resourcegroup  
-        subscriptionId: ${{ secrets.AZURE_SUB }}
+        subscriptionId: ${{ secrets.SUB_ID }}
         resourceGroupName: ${{ secrets.RG_CON }}
         template: ARM/connectors-template.json  # Set this to the location of your template file
         parameters: ARM/connectors-parameters.prod.json logicAppSystemAssignedIdentityTenantId=${{ steps.ladeploy2.outputs.logicAppSystemAssignedIdentityTenantId }} logicAppSystemAssignedIdentityObjectId=${{ steps.ladeploy2.outputs.logicAppSystemAssignedIdentityObjectId }}
