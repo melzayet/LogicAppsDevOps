@@ -37,7 +37,7 @@ jobs:
       uses: Azure/arm-deploy@v1.0.1
       id: ladeploy
       with:
-        # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID, AZURE_RESOURCE_GROUP
+        # You can change these environment variables for your configuration:   AZURE_SUBSCRIPTION_ID, AZURE_RESOURCE_GROUP 
         scope: resourcegroup  
         subscriptionId: ${{ secrets.SUB_ID }}
         resourceGroupName:  ${{ secrets.RG_LA }}
