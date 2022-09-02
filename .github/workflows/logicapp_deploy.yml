@@ -56,7 +56,7 @@ jobs:
       with:
         client-id: ${{ secrets.CLIENT_ID }}
         tenant-id: ${{ secrets.TENANT_ID }}
-        subscription-id: ${{ secrets.SUB_ID }}
+        subscription-id: 4890b68e-fab6-4d43-83e0-b6c5b7aeb1fc
 
     - uses: actions/download-artifact@master
       with:
@@ -67,7 +67,7 @@ jobs:
       uses: Azure/functions-action@v1.4.7
       id: la
       with:
-        app-name: "ais-demo-dev"
+        app-name: ais-demo-dev
         package: './build-art/logic.zip'        
 
     - name: Swap parameter files      
