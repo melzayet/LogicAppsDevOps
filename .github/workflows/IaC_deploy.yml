@@ -10,6 +10,9 @@ on:
       - "ARM/**"
       - ".github/workflows/IaC_deploy.yml"
       
+permissions:
+      id-token: write
+      contents: read
 
 jobs:
   DeployDev:
