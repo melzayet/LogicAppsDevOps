@@ -9,7 +9,7 @@ env:
 
 on:
   workflow_dispatch:
-    # Trigger the workflow every time the build workflow ran to completion
+    # Trigger the workflow every time the build workflow ran to complete
   workflow_run:
     workflows:
       - (classic) Logic App Infrastructure as Code Pipeline.
@@ -24,7 +24,7 @@ on:
 permissions:
       id-token: write
       contents: read
-      
+
 jobs:
   logic_app_build: 
     name: Build 
