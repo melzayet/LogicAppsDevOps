@@ -21,6 +21,10 @@ on:
       - "logic/**"
       - ".github/workflows/logicapp_deploy.yml"
 
+permissions:
+      id-token: write
+      contents: read
+      
 jobs:
   logic_app_build: 
     name: Build 
