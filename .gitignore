@@ -4,3 +4,5 @@ appsettings.json
 local.settings.json
 workflow-designtime/
 *.dll
+__*/
+azurite*
