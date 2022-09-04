@@ -58,7 +58,7 @@ jobs:
       with:
         client-id: ${{ secrets.CLIENT_ID }}
         tenant-id: ${{ secrets.TENANT_ID }}
-        subscription-id: 4890b68e-fab6-4d43-83e0-b6c5b7aeb1fc
+        subscription-id: ${{ secrets.SUB_ID }}
 
     - uses: actions/download-artifact@master
       with:
